@@ -797,13 +797,6 @@ let cashiers = [];
 let trucks = [];
 let advances = [];
 
-// ── FIREBASE SAVE HELPERS ──
-function sv(key, val) {
-  // key: 'kab_trucks' | 'kab_advances' | 'kab_workers' | 'kab_cashiers' | 'kab_apin'
-  const path = 'kab/' + key.replace('kab_','');
-  set(ref(db, path), val).catch(e => console.error('Firebase write error:', e));
-}
-
 // ── REAL-TIME LISTENERS ──
 function setupListeners() {
   onValue(ref(db, 'kab/apin'), snap => {
