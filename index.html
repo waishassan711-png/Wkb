@@ -676,6 +676,25 @@ input:checked+.slider:before{transform:translateX(20px);}
   </div>
 </div>
 
+<!-- QUICK STATUS MODAL -->
+<div class="modal-overlay" id="m-quick-status">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">💳 Change Payment Status</div>
+    <input type="hidden" id="qs-id">
+    <div id="qs-plate" style="font-size:13px;color:var(--muted);margin-bottom:16px;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="t-btn" style="padding:14px;font-size:14px;border-radius:12px;background:rgba(46,213,115,0.15);border:1.5px solid rgba(46,213,115,0.4);color:#2ed573;font-weight:700;"
+        onclick="applyQuickStatus('paid')">✅ Paid — Full (1,300 ETB to worker)</button>
+      <button class="t-btn" style="padding:14px;font-size:14px;border-radius:12px;background:rgba(255,190,0,0.15);border:1.5px solid rgba(255,190,0,0.4);color:#ffbe00;font-weight:700;"
+        onclick="applyQuickStatus('partial')">⚡ Partial — 700 ETB to worker</button>
+      <button class="t-btn" style="padding:14px;font-size:14px;border-radius:12px;background:rgba(231,76,60,0.15);border:1.5px solid rgba(231,76,60,0.4);color:#e74c3c;font-weight:700;"
+        onclick="applyQuickStatus('unpaid')">❌ Unpaid — 0 ETB to worker</button>
+    </div>
+    <button class="btn-sec" onclick="closeModal('m-quick-status')" style="margin-top:14px;">Cancel</button>
+  </div>
+</div>
+
 <!-- PWA BANNER -->
 <div class="pwa-banner hidden" id="pwa-banner">
   <div style="font-size:30px;">📲</div>
@@ -1118,7 +1137,8 @@ function renderCTrucks(){
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       ${showEdit||showDel?`<div class="truck-acts">
-        ${showEdit?`<button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')">✏️ Edit</button>`:''}
+        ${showEdit?`<button class="t-btn t-btn-edit" onclick="quickStatus('${tk.id}')">💳 Status</button>`:''}
+        ${showEdit?`<button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')" style="background:rgba(79,163,232,0.15);border-color:rgba(79,163,232,0.3);color:var(--bright);">✏️ Edit</button>`:''}
         ${showDel?`<button class="t-btn t-btn-del" onclick="delTruck('${tk.id}')">🗑️</button>`:''}
       </div>`:''}
     </div>`;
@@ -1174,7 +1194,8 @@ function renderATrucks(){
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       <div class="truck-acts">
-        <button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')">✏️ Edit</button>
+        <button class="t-btn t-btn-edit" onclick="quickStatus('${tk.id}')">💳 Status</button>
+        <button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')" style="background:rgba(79,163,232,0.15);border-color:rgba(79,163,232,0.3);color:var(--bright);">✏️ Edit</button>
         <button class="t-btn t-btn-del" onclick="delTruck('${tk.id}')">🗑️ Delete</button>
       </div>
     </div>`;
@@ -1506,6 +1527,29 @@ function saveWorkerPerms(){
   renderManage();
 }
 
+
+// ── QUICK STATUS ──────────────────────────────
+function quickStatus(id){
+  const tk=trucks.find(x=>x.id===id);
+  if(!tk) return;
+  document.getElementById('qs-id').value=id;
+  document.getElementById('qs-plate').textContent='Truck: '+tk.plate+' · Worker: '+tk.worker;
+  // highlight current status button
+  document.querySelectorAll('#m-quick-status .t-btn').forEach(b=>b.style.opacity='1');
+  openModal('m-quick-status');
+}
+function applyQuickStatus(status){
+  const id=document.getElementById('qs-id').value;
+  const tk=trucks.find(x=>x.id===id);
+  if(!tk) return;
+  tk.status=status;
+  tk.editedBy=curUser;
+  tk.editedAt=new Date().toISOString();
+  sv('kab_trucks',trucks);
+  closeModal('m-quick-status');
+  rerenderCurrent();
+  toast('✅ Status updated to '+status);
+}
 // ── WORKER FILTER ──────────────────────────────
 function buildWorkerChips(){
   const containers = document.querySelectorAll('.worker-filter-chips');
