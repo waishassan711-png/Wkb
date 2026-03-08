@@ -1208,12 +1208,12 @@ function renderWorkersList(){
   if(!workers.length) return `<div class="empty"><div class="eicon">👷</div><p>No workers</p></div>`;
   return workers.map(w=>{
     const mine=trucks.filter(t=>t.worker===w.name);
+    const paid=mine.filter(t=>t.status==='paid').length;
     const partial=mine.filter(t=>t.status==='partial').length;
-  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
+    const unpaid=mine.filter(t=>t.status==='unpaid').length;
+    const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
     const advTotal=advances.filter(a=>a.worker===w.name).reduce((s,a)=>s+a.amount,0);
     const net=earn-advTotal;
-    const paid=mine.filter(t=>t.status==='paid').length;
-    const unpaid=mine.filter(t=>t.status==='unpaid').length;
     return `<div class="w-card">
       <div class="w-card-top" onclick="toggleDetail('wd-${w.name}')">
         <div class="w-av" style="background:${w.color}33;color:${w.color};">${w.name.slice(0,2).toUpperCase()}</div>
