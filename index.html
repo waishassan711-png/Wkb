@@ -106,8 +106,10 @@ body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);m
 /* FILTER */
 .filter-bar{display:flex;gap:7px;margin-bottom:11px;overflow-x:auto;padding-bottom:2px;}
 .filter-bar::-webkit-scrollbar{display:none;}
-.chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer;border:1.5px solid rgba(255,255,255,0.12);background:transparent;color:var(--muted);flex-shrink:0;}
+.chip{padding:7px 14px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer;border:1.5px solid rgba(255,255,255,0.12);background:transparent;color:var(--muted);flex-shrink:0;min-height:36px;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0);pointer-events:all;}
 .chip.active{background:var(--accent);color:white;border-color:var(--accent);}
+.wchip{background:rgba(255,255,255,0.04);color:var(--muted);}
+.wchip.active{color:#fff!important;border-width:2px!important;box-shadow:0 0 10px rgba(255,255,255,0.2);transform:scale(1.06);font-weight:700;}
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:100;display:none;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
@@ -229,11 +231,13 @@ input:checked+.slider:before{transform:translateX(20px);}
   </div>
   <div class="scroll">
     <div class="stats-row" id="w-stats"></div>
-    <div class="filter-bar">
+    <div class="filter-bar" style="flex-wrap:wrap;gap:6px;row-gap:8px;">
       <button class="chip active" onclick="setFilter('all',this)">All</button>
       <button class="chip" onclick="setFilter('paid',this)">✅ Paid</button>
       <button class="chip" onclick="setFilter('partial',this)">⚡ Partial</button>
       <button class="chip" onclick="setFilter('unpaid',this)">❌ Unpaid</button>
+      <span style="color:rgba(255,255,255,0.2);font-size:14px;align-self:center;">|</span>
+      <div class="worker-filter-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
     </div>
     <div class="sec-hdr"><span class="sec-title">My Trucks</span><span class="sec-action" onclick="openModal('m-truck')">+ New</span></div>
     <div id="w-trucks-list"></div>
@@ -268,11 +272,13 @@ input:checked+.slider:before{transform:translateX(20px);}
   </div>
   <div class="scroll">
     <div class="stats-row" id="c-stats"></div>
-    <div class="filter-bar">
+    <div class="filter-bar" style="flex-wrap:wrap;gap:6px;row-gap:8px;">
       <button class="chip active" onclick="setFilter('all',this)">All</button>
       <button class="chip" onclick="setFilter('paid',this)">✅ Paid</button>
       <button class="chip" onclick="setFilter('partial',this)">⚡ Partial</button>
       <button class="chip" onclick="setFilter('unpaid',this)">❌ Unpaid</button>
+      <span style="color:rgba(255,255,255,0.2);font-size:14px;align-self:center;">|</span>
+      <div class="worker-filter-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
     </div>
     <div class="sec-hdr"><span class="sec-title">All Trucks</span><span class="sec-action" onclick="openModal('m-truck')">+ New</span></div>
     <div id="c-trucks-list"></div>
@@ -350,11 +356,13 @@ input:checked+.slider:before{transform:translateX(20px);}
     <div class="stat-box"><div class="stat-num" style="color:var(--green)">3</div><div class="stat-lbl">Paid</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--gold)">0</div><div class="stat-lbl">Partial</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--red)">0</div><div class="stat-lbl">Unpaid</div></div></div>
-    <div class="filter-bar">
+    <div class="filter-bar" style="flex-wrap:wrap;gap:6px;row-gap:8px;">
       <button class="chip active" onclick="setFilter('all',this)">All</button>
       <button class="chip" onclick="setFilter('paid',this)">✅ Paid</button>
       <button class="chip" onclick="setFilter('partial',this)">⚡ Partial</button>
       <button class="chip" onclick="setFilter('unpaid',this)">❌ Unpaid</button>
+      <span style="color:rgba(255,255,255,0.2);font-size:14px;align-self:center;">|</span>
+      <div class="worker-filter-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
     </div>
     <div class="sec-hdr"><span class="sec-title">All Trucks</span><span class="sec-action" onclick="openModal('m-truck')">+ New</span></div>
     <div id="a-trucks-list"><div class="truck-card paid">
@@ -364,7 +372,7 @@ input:checked+.slider:before{transform:translateX(20px);}
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:#f5a623">👷 Oli</div></div>
-        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 FDJ</div></div>
+        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 ETB</div></div>
         
       </div>
       <div class="truck-acts">
@@ -378,7 +386,7 @@ input:checked+.slider:before{transform:translateX(20px);}
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:#f5a623">👷 Oli</div></div>
-        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 FDJ</div></div>
+        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 ETB</div></div>
         
       </div>
       <div class="truck-acts">
@@ -392,7 +400,7 @@ input:checked+.slider:before{transform:translateX(20px);}
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:#2d7dd2">👷 Ahmed</div></div>
-        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 FDJ</div></div>
+        <div><div class="tm-lbl">Earnings</div><div class="tm-val" style="color:var(--teal)">1,300 ETB</div></div>
         
       </div>
       <div class="truck-acts">
@@ -583,7 +591,7 @@ input:checked+.slider:before{transform:translateX(20px);}
       <div class="form-group"><label class="form-label">Date</label><input class="form-input" id="f-date" type="date"></div>
       <div class="form-group" id="f-worker-grp"><label class="form-label">Worker</label><select class="form-select" id="f-worker"></select></div>
     </div>
-    <div class="form-group"><label class="form-label">Payment Status</label>
+    <div class="form-group" id="f-status-group"><label class="form-label">Payment Status</label>
       <select class="form-select" id="f-status">
         <option value="unpaid">❌ Unpaid</option>
         <option value="partial">⚡ Partial</option>
@@ -603,7 +611,7 @@ input:checked+.slider:before{transform:translateX(20px);}
     <div class="modal-title">💰 Add Advance</div>
     <div class="form-group"><label class="form-label">Worker</label><select class="form-select" id="a-worker"></select></div>
     <div class="form-row">
-      <div class="form-group"><label class="form-label">Amount (FDJ)</label><input class="form-input" id="a-amount" type="number" placeholder="0"></div>
+      <div class="form-group"><label class="form-label">Amount (ETB)</label><input class="form-input" id="a-amount" type="number" placeholder="0"></div>
       <div class="form-group"><label class="form-label">Date</label><input class="form-input" id="a-date" type="date"></div>
     </div>
     <div class="form-group"><label class="form-label">Reason (optional)</label><input class="form-input" id="a-reason" placeholder="Reason..."></div>
@@ -655,6 +663,19 @@ input:checked+.slider:before{transform:translateX(20px);}
   </div>
 </div>
 
+<!-- WORKER PERMISSIONS MODAL -->
+<div class="modal-overlay" id="m-worker-perms">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⚙️ Worker Permissions</div>
+    <div id="wp-worker-name" style="font-size:13px;color:var(--muted);margin-bottom:14px;"></div>
+    <input type="hidden" id="wp-name">
+    <div id="wp-toggles"></div>
+    <button class="btn-pri" onclick="saveWorkerPerms()" style="margin-top:16px;">💾 Save Permissions</button>
+    <button class="btn-sec" onclick="closeModal('m-worker-perms')">Cancel</button>
+  </div>
+</div>
+
 <!-- PWA BANNER -->
 <div class="pwa-banner hidden" id="pwa-banner">
   <div style="font-size:30px;">📲</div>
@@ -700,8 +721,10 @@ window.addEventListener('online', () => {
 });
 
 // ── TARIFFS ──
-const TOTAL_RATE = 5500;   // Total payment per car (client pays)
-const WORKER_RATE = 1300;  // Worker earns per car
+const TOTAL_RATE = 5500;         // Total payment per car (client pays)
+const WORKER_RATE = 1300;        // Worker earns per car (full)
+const PARTIAL_RATE = 2800;       // Company gets on partial
+const WORKER_PARTIAL_RATE = 700; // Worker earns on partial
 const COMPANY_RATE = TOTAL_RATE - WORKER_RATE; // Company keeps = 4200
 
 const COLORS=['#2d7dd2','#00c9b1','#f5a623','#e74c3c','#9b59b6','#1abc9c','#e67e22'];
@@ -780,11 +803,11 @@ function sv(key, val) {
 
 // ── DEFAULT DATA (seeded on first run) ──
 const DEFAULT_WORKERS = [
-  {name:'Ahmed',pin:'2222',color:'#2d7dd2'},
-  {name:'Radwan',pin:'3333',color:'#00c9b1'},
-  {name:'Oli',pin:'4444',color:'#f5a623'},
-  {name:'Ali',pin:'5555',color:'#e74c3c'},
-  {name:'Omar',pin:'6666',color:'#9b59b6'},
+  {name:'Ahmed',pin:'2222',color:'#2d7dd2',perms:{editStatus:false,seeAllWorkers:false}},
+  {name:'Radwan',pin:'3333',color:'#00c9b1',perms:{editStatus:false,seeAllWorkers:false}},
+  {name:'Oli',pin:'4444',color:'#f5a623',perms:{editStatus:false,seeAllWorkers:false}},
+  {name:'Ali',pin:'5555',color:'#e74c3c',perms:{editStatus:false,seeAllWorkers:false}},
+  {name:'Omar',pin:'6666',color:'#9b59b6',perms:{editStatus:false,seeAllWorkers:false}},
 ];
 const DEFAULT_CASHIERS = [
   {name:'Cashier 1',pin:'7777',color:'#00c9b1',perms:{addTruck:true,addAdvance:true,editStatus:true,deleteTruck:false}},
@@ -864,7 +887,7 @@ async function init() {
   go('s-login');
   toast('🔥 Connected to Firebase!');
 }
-let curUser=null,curRole=null,curFilter='all',pinEntry='',pinTarget=null,pinTargetRole=null;
+let curUser=null,curRole=null,curFilter='all',curWorkerFilter='all',pinEntry='',pinTarget=null,pinTargetRole=null;
 
 // ── NAV ──
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
@@ -941,17 +964,54 @@ function wTab(tab){
 function renderWTrucks(){
   const w=workers.find(x=>x.name===curUser);
   const color=w?w.color:'var(--bright)';
-  const mine=trucks.filter(t=>t.worker===curUser);
+  const wp=getWorkerPerms();
+  const mine=wp.seeAllWorkers ? trucks : trucks.filter(t=>t.worker===curUser);
   const filtered=curFilter==='all'?mine:mine.filter(t=>t.status===curFilter);
+  if(wp.seeAllWorkers) buildWorkerChips(); else document.querySelectorAll('.worker-filter-chips').forEach(c=>c.innerHTML='');
   const paid=mine.filter(t=>t.status==='paid').length;
   const unpaid=mine.filter(t=>t.status==='unpaid').length;
-  const earn=mine.length*WORKER_RATE;
+  const partial=mine.filter(t=>t.status==='partial').length;
+  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
+  document.getElementById('w-trucks-title').textContent=curUser+' — My Trucks';
+  const workerCounts = workers.map(wk=>{
+    const cnt = trucks.filter(t=>t.worker===wk.name).length;
+    const wPaid = trucks.filter(t=>t.worker===wk.name&&t.status==='paid').length;
+    const wPartial = trucks.filter(t=>t.worker===wk.name&&t.status==='partial').length;
+    const wEarn = (wPaid*WORKER_RATE) + (wPartial*WORKER_PARTIAL_RATE);
+    const wEarnStr = wEarn>=1000 ? (wEarn/1000).toFixed(1)+'k' : wEarn;
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:${wk.name===curUser?wk.color+'22':'rgba(255,255,255,0.04)'};border:1px solid ${wk.name===curUser?wk.color+'55':'rgba(255,255,255,0.07)'};">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:28px;height:28px;border-radius:8px;background:${wk.color}33;color:${wk.color};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">${wk.name.slice(0,2).toUpperCase()}</div>
+        <span style="font-size:13px;font-weight:600;color:${wk.name===curUser?wk.color:'var(--text)'};">${wk.name}${wk.name===curUser?' (you)':''}</span>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:18px;font-weight:700;color:${wk.color};">${cnt}</div>
+        <div style="font-size:10px;color:var(--muted);">${wEarnStr} ETB</div>
+      </div>
+    </div>`;
+  }).join('');
   document.getElementById('w-trucks-title').textContent=curUser+' — My Trucks';
   document.getElementById('w-stats').innerHTML=`
     <div class="stat-box"><div class="stat-num" style="color:${color}">${mine.length}</div><div class="stat-lbl">My Trucks</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--green)">${paid}</div><div class="stat-lbl">Paid</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--gold)">${partial}</div><div class="stat-lbl">Partial</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--red)">${unpaid}</div><div class="stat-lbl">Unpaid</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--teal);font-size:15px;">${(earn/1000).toFixed(1)}k</div><div class="stat-lbl">FDJ</div></div>`;
+    <div class="stat-box"><div class="stat-num" style="color:var(--teal);font-size:15px;">${(earn/1000).toFixed(1)}k</div><div class="stat-lbl">ETB</div></div>
+    <div style="grid-column:1/-1;margin-top:4px;">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:6px;">TEAM TRUCKS</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">${workerCounts}</div>
+      <div style="margin-top:8px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:12px;font-weight:700;color:var(--muted);">TOTAL TRUCKS</span>
+          <span style="font-size:20px;font-weight:800;color:var(--text);">${trucks.length}</span>
+        </div>
+        <div style="display:flex;gap:8px;font-size:11px;font-weight:600;">
+          <span style="color:var(--green);">✅ ${trucks.filter(t=>t.status==='paid').length} Paid</span>
+          <span style="color:var(--gold);">⚡ ${trucks.filter(t=>t.status==='partial').length} Partial</span>
+          <span style="color:var(--red);">❌ ${trucks.filter(t=>t.status==='unpaid').length} Unpaid</span>
+        </div>
+      </div>
+    </div>`;
   const list=document.getElementById('w-trucks-list');
   if(!filtered.length){list.innerHTML=`<div class="empty"><div class="eicon">🚛</div><p>No trucks yet.<br>Tap + Add to record one.</p></div>`;return;}
   list.innerHTML=filtered.map(tk=>`
@@ -961,11 +1021,11 @@ function renderWTrucks(){
         <div class="badge badge-${tk.status}">${tk.status}</div>
       </div>
       <div class="truck-meta">
-        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} FDJ</div></div>
-        <div><div class="tm-lbl">Your Earnings</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} FDJ</div></div>
+        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Your Earnings</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} ETB</div></div>
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
-      <div class="truck-acts"><button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')">✏️ Edit Status</button></div>
+      <div class="truck-acts">${getWorkerPerms().editStatus?`<button class="t-btn t-btn-edit" onclick="editTruck('${tk.id}')">✏️ Edit Status</button>`:''}</div>
     </div>`).join('');
 }
 function renderWEarnings(){
@@ -973,22 +1033,23 @@ function renderWEarnings(){
   const color=w?w.color:'var(--bright)';
   const mine=trucks.filter(t=>t.worker===curUser);
   const myAdv=advances.filter(a=>a.worker===curUser);
-  const earn=mine.length*WORKER_RATE;
+  const partial=mine.filter(t=>t.status==='partial').length;
+  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
   const advTotal=myAdv.reduce((s,a)=>s+a.amount,0);
   const net=earn-advTotal;
   document.getElementById('w-earn-title').textContent=curUser+' — Earnings';
   let h=`<div class="report-card" style="border-left:4px solid ${color};">
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;margin-bottom:12px;color:${color};">💰 My Summary</div>
     <div class="report-row"><span class="r-key">Total Trucks</span><span class="r-val">${mine.length}</span></div>
-    <div class="report-row"><span class="r-key">Rate per truck</span><span class="r-val">${WORKER_RATE.toLocaleString()} FDJ</span></div>
-    <div class="report-row"><span class="r-key">Total fare per truck</span><span class="r-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} FDJ</span></div>
-    <div class="report-row"><span class="r-key">Gross Earnings</span><span class="r-val" style="color:var(--teal)">${earn.toLocaleString()} FDJ</span></div>
-    <div class="report-row"><span class="r-key">Advances Taken</span><span class="r-val" style="color:var(--gold)">${advTotal.toLocaleString()} FDJ</span></div>
-    <div class="report-row"><span class="r-key">Net Balance</span><span class="r-val" style="color:${net>=0?'var(--green)':'var(--red)'};font-size:20px;">${net.toLocaleString()} FDJ</span></div>
+    <div class="report-row"><span class="r-key">Rate per truck</span><span class="r-val">${WORKER_RATE.toLocaleString()} ETB</span></div>
+    <div class="report-row"><span class="r-key">Total fare per truck</span><span class="r-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</span></div>
+    <div class="report-row"><span class="r-key">Gross Earnings</span><span class="r-val" style="color:var(--teal)">${earn.toLocaleString()} ETB</span></div>
+    <div class="report-row"><span class="r-key">Advances Taken</span><span class="r-val" style="color:var(--gold)">${advTotal.toLocaleString()} ETB</span></div>
+    <div class="report-row"><span class="r-key">Net Balance</span><span class="r-val" style="color:${net>=0?'var(--green)':'var(--red)'};font-size:20px;">${net.toLocaleString()} ETB</span></div>
   </div>`;
   if(myAdv.length){
     h+=`<div class="sec-hdr"><span class="sec-title">My Advances</span></div>`;
-    h+=myAdv.map(a=>`<div class="adv-card"><div style="font-size:20px;">💰</div><div style="flex:1;"><div style="font-weight:600;">${fmtDate(a.date)}</div><div style="font-size:11px;color:var(--muted);">${a.reason||'No reason'}</div></div><div style="text-align:right;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--gold)">${a.amount.toLocaleString()}</div><div style="font-size:9px;color:var(--muted);">FDJ</div></div></div>`).join('');
+    h+=myAdv.map(a=>`<div class="adv-card"><div style="font-size:20px;">💰</div><div style="flex:1;"><div style="font-weight:600;">${fmtDate(a.date)}</div><div style="font-size:11px;color:var(--muted);">${a.reason||'No reason'}</div></div><div style="text-align:right;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--gold)">${a.amount.toLocaleString()}</div><div style="font-size:9px;color:var(--muted);">ETB</div></div></div>`).join('');
   }
   if(mine.length){
     h+=`<div class="sec-hdr" style="margin-top:8px;"><span class="sec-title">Truck History</span></div>`;
@@ -1011,16 +1072,23 @@ function cTab(tab){
   if(tab==='advances') renderCAdvances();
   if(tab==='reports') renderReports('c');
 }
+
+function getWorkerPerms(){
+  const w=workers.find(x=>x.name===curUser);
+  return w&&w.perms ? w.perms : {editStatus:false,seeAllWorkers:false};
+}
 function getCashierPerms(){
   const c=cashiers.find(x=>x.name===curUser);
   return c?c.perms:{addTruck:false,addAdvance:false,editStatus:false,deleteTruck:false};
 }
 function renderCTrucks(){
   const perms=getCashierPerms();
-  const filtered=curFilter==='all'?trucks:trucks.filter(t=>t.status===curFilter);
-  const paid=trucks.filter(t=>t.status==='paid').length;
-  const partial=trucks.filter(t=>t.status==='partial').length;
-  const unpaid=trucks.filter(t=>t.status==='unpaid').length;
+  let cBase = curWorkerFilter==='all' ? trucks : trucks.filter(t=>t.worker===curWorkerFilter);
+  const filtered=curFilter==='all'?cBase:cBase.filter(t=>t.status===curFilter);
+  const paid=cBase.filter(t=>t.status==='paid').length;
+  const partial=cBase.filter(t=>t.status==='partial').length;
+  const unpaid=cBase.filter(t=>t.status==='unpaid').length;
+  buildWorkerChips();
   document.getElementById('c-trucks-title').textContent=curUser+' — Trucks';
   document.getElementById('c-stats').innerHTML=`
     <div class="stat-box"><div class="stat-num">${trucks.length}</div><div class="stat-lbl">Total</div></div>
@@ -1044,9 +1112,9 @@ function renderCTrucks(){
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:${color}">👷 ${tk.worker}</div></div>
-        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} FDJ</div></div>
-        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} FDJ</div></div>
-        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} FDJ</div></div>
+        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} ETB</div></div>
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       ${showEdit||showDel?`<div class="truck-acts">
@@ -1077,10 +1145,12 @@ function aTab(tab){
   if(tab==='manage') renderManage();
 }
 function renderATrucks(){
-  const filtered=curFilter==='all'?trucks:trucks.filter(t=>t.status===curFilter);
-  const paid=trucks.filter(t=>t.status==='paid').length;
-  const partial=trucks.filter(t=>t.status==='partial').length;
-  const unpaid=trucks.filter(t=>t.status==='unpaid').length;
+  let aBase = curWorkerFilter==='all' ? trucks : trucks.filter(t=>t.worker===curWorkerFilter);
+  const filtered=curFilter==='all'?aBase:aBase.filter(t=>t.status===curFilter);
+  const paid=aBase.filter(t=>t.status==='paid').length;
+  const partial=aBase.filter(t=>t.status==='partial').length;
+  const unpaid=aBase.filter(t=>t.status==='unpaid').length;
+  buildWorkerChips();
   document.getElementById('a-stats').innerHTML=`
     <div class="stat-box"><div class="stat-num">${trucks.length}</div><div class="stat-lbl">Total</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--green)">${paid}</div><div class="stat-lbl">Paid</div></div>
@@ -1098,9 +1168,9 @@ function renderATrucks(){
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:${color}">👷 ${tk.worker}</div></div>
-        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} FDJ</div></div>
-        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} FDJ</div></div>
-        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} FDJ</div></div>
+        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} ETB</div></div>
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       <div class="truck-acts">
@@ -1117,7 +1187,8 @@ function renderWorkersList(){
   if(!workers.length) return `<div class="empty"><div class="eicon">👷</div><p>No workers</p></div>`;
   return workers.map(w=>{
     const mine=trucks.filter(t=>t.worker===w.name);
-    const earn=mine.length*WORKER_RATE;
+    const partial=mine.filter(t=>t.status==='partial').length;
+  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
     const advTotal=advances.filter(a=>a.worker===w.name).reduce((s,a)=>s+a.amount,0);
     const net=earn-advTotal;
     const paid=mine.filter(t=>t.status==='paid').length;
@@ -1126,7 +1197,7 @@ function renderWorkersList(){
       <div class="w-card-top" onclick="toggleDetail('wd-${w.name}')">
         <div class="w-av" style="background:${w.color}33;color:${w.color};">${w.name.slice(0,2).toUpperCase()}</div>
         <div><div class="w-name">${w.name}</div><div class="w-sub">${mine.length} trucks · ✅${paid} ❌${unpaid}</div></div>
-        <div class="w-earn"><div class="w-amount">${earn.toLocaleString()}</div><div style="font-size:9px;color:var(--muted);">Earned FDJ</div><div class="w-net" style="color:${net>=0?'var(--green)':'var(--red)'}">Net: ${net.toLocaleString()}</div></div>
+        <div class="w-earn"><div class="w-amount">${earn.toLocaleString()}</div><div style="font-size:9px;color:var(--muted);">Earned ETB</div><div class="w-net" style="color:${net>=0?'var(--green)':'var(--red)'}">Net: ${net.toLocaleString()}</div></div>
       </div>
       <div class="w-detail" id="wd-${w.name}">
         ${mine.length===0?'<div style="font-size:12px;color:var(--muted);padding:7px 0;">No trucks recorded yet.</div>':
@@ -1148,7 +1219,7 @@ function renderAdvancesList(listId,canDelete){
     <div style="flex:1;"><div style="font-weight:600;font-size:14px;">${a.worker}</div><div style="font-size:11px;color:var(--muted);">${fmtDate(a.date)}${a.reason?' · '+a.reason:''}</div><div style="font-size:10px;color:rgba(255,255,255,0.3);">Added by: ${a.addedBy||'—'}</div></div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--gold)">${a.amount.toLocaleString()}</div>
-      <div style="font-size:9px;color:var(--muted);">FDJ</div>
+      <div style="font-size:9px;color:var(--muted);">ETB</div>
       ${canDelete?`<button onclick="delAdvance('${a.id}')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;">Delete</button>`:''}
     </div>
   </div>`).join('');
@@ -1189,7 +1260,7 @@ function renderReports(prefix){
       +'<div style="background:rgba(255,255,255,0.07);border-radius:6px;height:6px;overflow:hidden;margin-bottom:4px;"><div style="background:'+x.w.color+';height:100%;width:'+x.pct+'%;border-radius:6px;"></div></div>'
       +'<div style="display:flex;gap:10px;font-size:10px;">'
       +'<span style="color:var(--green);">&#x2705;'+x.wpaid+'</span><span style="color:var(--gold);">&#x26A1;'+x.wpartial+'</span><span style="color:var(--red);">&#x274C;'+x.wunpaid+'</span>'
-      +'<span style="margin-left:auto;color:var(--teal);">'+x.earn.toLocaleString()+' FDJ</span>'
+      +'<span style="margin-left:auto;color:var(--teal);">'+x.earn.toLocaleString()+' ETB</span>'
       +'<span style="color:'+(x.net>=0?'var(--green)':'var(--red)')+';">Net '+x.net.toLocaleString()+'</span>'
       +'</div></div>';
   }).join('');
@@ -1199,7 +1270,7 @@ function renderReports(prefix){
       +'<span style="text-align:right;font-size:11px;line-height:1.8;">'
       +'<b style="font-family:Barlow Condensed,sans-serif;font-size:14px;">'+x.cnt+' trucks</b> (&#x2705;'+x.wpaid+' &#x274C;'+x.wunpaid+')<br>'
       +'<span style="color:var(--teal);">Earned: '+x.earn.toLocaleString()+'</span> &middot; <span style="color:var(--gold);">Adv: '+x.adv.toLocaleString()+'</span><br>'
-      +'<span style="color:'+(x.net>=0?'var(--green)':'var(--red)')+';">Net: '+x.net.toLocaleString()+' FDJ</span>'
+      +'<span style="color:'+(x.net>=0?'var(--green)':'var(--red)')+';">Net: '+x.net.toLocaleString()+' ETB</span>'
       +'</span></div>';
   }).join('');
   var html=''
@@ -1212,28 +1283,28 @@ function renderReports(prefix){
   +'</div>'
   +'<div class="report-card" style="border-left:4px solid var(--gold);">'
   +'<div style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;margin-bottom:12px;color:var(--gold);">&#x1F4B0; Tariffs Breakdown</div>'
-  +'<div class="report-row"><span class="r-key">Total Fare / Car</span><span class="r-val" style="color:var(--gold)">'+TOTAL_RATE.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Worker Earns / Car</span><span class="r-val" style="color:var(--teal)">'+WORKER_RATE.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Company Keeps / Car</span><span class="r-val" style="color:var(--bright)">'+COMPANY_RATE.toLocaleString()+' FDJ</span></div>'
+  +'<div class="report-row"><span class="r-key">Total Fare / Car</span><span class="r-val" style="color:var(--gold)">'+TOTAL_RATE.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Worker Earns / Car</span><span class="r-val" style="color:var(--teal)">'+WORKER_RATE.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Company Keeps / Car</span><span class="r-val" style="color:var(--bright)">'+COMPANY_RATE.toLocaleString()+' ETB</span></div>'
   +'<div style="height:1px;background:rgba(255,255,255,0.08);margin:10px 0;"></div>'
-  +'<div class="report-row"><span class="r-key">Total Billed (all cars)</span><span class="r-val" style="color:var(--gold)">'+totalFare.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Workers Total Earnings</span><span class="r-val" style="color:var(--teal)">'+totalWorkerEarn.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Company Total Revenue</span><span class="r-val" style="color:var(--bright)">'+totalCompany.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Total Advances Out</span><span class="r-val" style="color:var(--red)">'+totalAdv.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Net Workers Balance</span><span class="r-val" style="color:'+(netWorkers>=0?'var(--green)':'var(--red)')+';font-size:18px;">'+netWorkers.toLocaleString()+' FDJ</span></div>'
+  +'<div class="report-row"><span class="r-key">Total Billed (all cars)</span><span class="r-val" style="color:var(--gold)">'+totalFare.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Workers Total Earnings</span><span class="r-val" style="color:var(--teal)">'+totalWorkerEarn.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Company Total Revenue</span><span class="r-val" style="color:var(--bright)">'+totalCompany.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Total Advances Out</span><span class="r-val" style="color:var(--red)">'+totalAdv.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Net Workers Balance</span><span class="r-val" style="color:'+(netWorkers>=0?'var(--green)':'var(--red)')+';font-size:18px;">'+netWorkers.toLocaleString()+' ETB</span></div>'
   +'</div>'
   +'<div class="report-card" style="border-left:4px solid var(--teal);">'
   +'<div style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;margin-bottom:12px;color:var(--teal);">&#x1F4C5; Today &mdash; '+todayStr+'</div>'
   +'<div class="report-row"><span class="r-key">Trucks Today</span><span class="r-val" style="color:var(--teal)">'+todayTrucks.length+'</span></div>'
-  +'<div class="report-row"><span class="r-key">Total Fare Today</span><span class="r-val" style="color:var(--gold)">'+(todayTrucks.length*TOTAL_RATE).toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Workers Earnings Today</span><span class="r-val" style="color:var(--teal)">'+(todayTrucks.length*WORKER_RATE).toLocaleString()+' FDJ</span></div>'
+  +'<div class="report-row"><span class="r-key">Total Fare Today</span><span class="r-val" style="color:var(--gold)">'+(todayTrucks.length*TOTAL_RATE).toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Workers Earnings Today</span><span class="r-val" style="color:var(--teal)">'+(todayTrucks.length*WORKER_RATE).toLocaleString()+' ETB</span></div>'
   +'<div class="report-row"><span class="r-key">&#x2705; Paid Today</span><span class="r-val" style="color:var(--green)">'+todayTrucks.filter(function(t){return t.status==='paid';}).length+'</span></div>'
   +'<div class="report-row"><span class="r-key">&#x274C; Unpaid Today</span><span class="r-val" style="color:var(--red)">'+todayTrucks.filter(function(t){return t.status==='unpaid';}).length+'</span></div>'
   +'</div>'
   +'<div class="report-card" style="border-left:4px solid var(--green);">'
   +'<div style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800;margin-bottom:12px;color:var(--green);">&#x1F4B3; Collection Status</div>'
-  +'<div class="report-row"><span class="r-key">Collected (paid)</span><span class="r-val" style="color:var(--green)">'+collected.toLocaleString()+' FDJ</span></div>'
-  +'<div class="report-row"><span class="r-key">Outstanding</span><span class="r-val" style="color:var(--red)">'+outstanding.toLocaleString()+' FDJ</span></div>'
+  +'<div class="report-row"><span class="r-key">Collected (paid)</span><span class="r-val" style="color:var(--green)">'+collected.toLocaleString()+' ETB</span></div>'
+  +'<div class="report-row"><span class="r-key">Outstanding</span><span class="r-val" style="color:var(--red)">'+outstanding.toLocaleString()+' ETB</span></div>'
   +'<div class="report-row"><span class="r-key">Collection Rate</span><span class="r-val" style="color:'+(collectionRate>=70?'var(--green)':'var(--gold)')+';">'+collectionRate+'%</span></div>'
   +'<div style="background:rgba(255,255,255,0.07);border-radius:8px;height:8px;margin-top:10px;overflow:hidden;"><div style="background:linear-gradient(90deg,var(--green),var(--teal));height:100%;width:'+collectionRate+'%;border-radius:8px;"></div></div>'
   +'</div>'
@@ -1262,6 +1333,7 @@ function renderManage(){
         <div class="w-av" style="background:${w.color}33;color:${w.color};">${w.name.slice(0,2).toUpperCase()}</div>
         <div style="flex:1;"><div class="w-name">${w.name}</div><div class="w-sub">Worker · PIN: ${'•'.repeat(w.pin.length)}</div></div>
         <div style="display:flex;gap:6px;">
+          <button onclick="openWorkerPerms('${w.name}')" style="background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.3);color:#9b59b6;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">⚙️ Perms</button>
           <button onclick="openEditPin('${w.name}','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
           <button onclick="removeWorker('${w.name}')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
         </div>
@@ -1317,6 +1389,14 @@ function savePerms(){
 // ── TRUCKS CRUD ──
 function openModal(id){
   if(id==='m-truck'){
+    const sg=document.getElementById('f-status-group');
+    if(sg) sg.style.display=(curRole==='worker')? 'none':'';
+    if(curRole==='worker'){
+      const fs=document.getElementById('f-status');
+      if(fs) fs.value='unpaid';
+    }
+  }
+  if(id==='m-truck'){
     document.getElementById('f-date').value=today();
     document.getElementById('f-edit-id').value='';
     document.getElementById('m-truck-title').textContent='🚛 Add Truck';
@@ -1347,16 +1427,6 @@ function saveTruck(){
   const notes=document.getElementById('f-notes').value.trim();
   const editId=document.getElementById('f-edit-id').value;
   if(!plate||!date){toast('⚠️ Fill in plate and date');return;}
-  // ── Duplicate check ──
-  const duplicate=trucks.find(x=>x.plate===plate && x.id!==editId);
-  if(duplicate){
-    const addedBy=duplicate.addedBy||'someone';
-    const dateStr=duplicate.date||'';
-    const createdAt=duplicate.createdAt?new Date(duplicate.createdAt).toTimeString().slice(0,5):'';
-    const timeStr=createdAt?createdAt:'';
-    alert('⚠️ Plate '+plate+' already exists!\nTime: '+timeStr+'\nDate: '+dateStr+'\nAdded by: '+addedBy+'\n\nPlease enter a different plate number.');
-    return;
-  }
   if(editId){
     const tk=trucks.find(x=>x.id===editId);
     if(tk){tk.plate=plate;tk.date=date;tk.worker=worker;tk.status=status;tk.notes=notes;tk.editedBy=curUser;tk.editedAt=new Date().toISOString();}
@@ -1396,6 +1466,76 @@ function delTruck(id){
   toast('🗑️ Deleted');
 }
 
+
+
+// ── WORKER PERMISSIONS ────────────────────────
+const WORKER_PERMS_DEF = [
+  {key:'editStatus', label:'Edit Payment Status', sub:'Can change paid / unpaid / partial on their trucks'},
+  {key:'seeAllWorkers', label:'See All Workers\' Trucks', sub:'Can view trucks added by other workers'},
+];
+function openWorkerPerms(name){
+  const w=workers.find(x=>x.name===name);
+  if(!w) return;
+  if(!w.perms) w.perms={editStatus:false,seeAllWorkers:false};
+  document.getElementById('wp-name').value=name;
+  document.getElementById('wp-worker-name').textContent='Worker: '+name;
+  document.getElementById('wp-toggles').innerHTML=WORKER_PERMS_DEF.map(p=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:13px;font-weight:600;">${p.label}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">${p.sub}</div>
+      </div>
+      <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;margin-left:12px;">
+        <input type="checkbox" id="wp-${p.key}" ${w.perms[p.key]?'checked':''} style="opacity:0;width:0;height:0;">
+        <span class="slider" onclick="this.previousElementSibling.click()"></span>
+      </label>
+    </div>`).join('');
+  openModal('m-worker-perms');
+}
+function saveWorkerPerms(){
+  const name=document.getElementById('wp-name').value;
+  const w=workers.find(x=>x.name===name);
+  if(!w) return;
+  if(!w.perms) w.perms={};
+  WORKER_PERMS_DEF.forEach(p=>{
+    w.perms[p.key]=document.getElementById('wp-'+p.key).checked;
+  });
+  sv('kab_workers',workers);
+  closeModal('m-worker-perms');
+  toast('⚙️ Permissions saved for '+name);
+  renderManage();
+}
+
+// ── WORKER FILTER ──────────────────────────────
+function buildWorkerChips(){
+  const containers = document.querySelectorAll('.worker-filter-chips');
+  containers.forEach(container => {
+    const allActive = curWorkerFilter==='all' ? 'active' : '';
+    const totalAll = trucks.length;
+    container.innerHTML =
+      `<button class="chip wchip ${allActive}" data-wname="all" style="border-left:3px solid #fff;">👥 All <span style="opacity:0.7;font-size:10px;">${totalAll}</span></button>` +
+      workers.map(w=>{
+        const active = curWorkerFilter===w.name ? 'active' : '';
+        const count = trucks.filter(t=>t.worker===w.name).length;
+        return `<button class="chip wchip ${active}" data-wname="${w.name}" style="border-left:3px solid ${w.color};${active?'background:'+w.color+'33;color:'+w.color+';border-color:'+w.color+';':''}">${w.name} <span style="opacity:0.7;font-size:10px;">${count}</span></button>`;
+      }).join('');
+    container.querySelectorAll('.wchip').forEach(btn => {
+      btn.addEventListener('click', function(){
+        setWorkerFilter(this.dataset.wname, this);
+      });
+    });
+  });
+}
+function setWorkerFilter(name, el){
+  // tapping 'all' or same name again → reset to all
+  curWorkerFilter = (name==='all' || curWorkerFilter===name) ? 'all' : name;
+  rerenderCurrent(); // buildWorkerChips is called inside render, it handles highlight
+}
+function rerenderCurrent(){
+  if(curRole==='worker') renderWTrucks();
+  else if(curRole==='cashier') renderCTrucks();
+  else if(curRole==='admin') renderATrucks();
+}
 function setFilter(f,el){
   curFilter=f;
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
@@ -1477,7 +1617,7 @@ function saveAdminPin(){
 function exportExcel(){
   const wb=XLSX.utils.book_new();
   // Sheet 1: All Trucks
-  const tData=[['Plate','Date','Time Added','Worker','Status','Total Fare (FDJ)','Worker Earnings (FDJ)','Company (FDJ)','Notes','Added By','Edited By']];
+  const tData=[['Plate','Date','Time Added','Worker','Status','Total Fare (ETB)','Worker Earnings (ETB)','Company (ETB)','Notes','Added By','Edited By']];
   trucks.forEach(t=>{
     const dt=t.createdAt?new Date(t.createdAt):null;
     tData.push([t.plate,t.date,dt?dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}):'',t.worker,t.status,TOTAL_RATE,WORKER_RATE,COMPANY_RATE,t.notes||'',t.addedBy||'',t.editedBy||'']);
@@ -1486,11 +1626,12 @@ function exportExcel(){
   ws1['!cols']=[{wch:12},{wch:12},{wch:12},{wch:12},{wch:10},{wch:14},{wch:20},{wch:12},{wch:12}];
   XLSX.utils.book_append_sheet(wb,ws1,'All Trucks');
   // Sheet 2: Worker Summary
-  const sData=[['Worker','Total Trucks','Total Fare (FDJ)','Worker Earnings (FDJ)','Company Revenue (FDJ)','Advances (FDJ)','Net Balance (FDJ)','Paid','Partial','Unpaid']];
+  const sData=[['Worker','Total Trucks','Total Fare (ETB)','Worker Earnings (ETB)','Company Revenue (ETB)','Advances (ETB)','Net Balance (ETB)','Paid','Partial','Unpaid']];
   workers.forEach(w=>{
     const mine=trucks.filter(t=>t.worker===w.name);
     const fare=mine.length*TOTAL_RATE;
-    const earn=mine.length*WORKER_RATE;
+    const partial=mine.filter(t=>t.status==='partial').length;
+  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
     const company=mine.length*COMPANY_RATE;
     const adv=advances.filter(a=>a.worker===w.name).reduce((s,a)=>s+a.amount,0);
     sData.push([w.name,mine.length,fare,earn,company,adv,earn-adv,mine.filter(t=>t.status==='paid').length,mine.filter(t=>t.status==='partial').length,mine.filter(t=>t.status==='unpaid').length]);
@@ -1504,7 +1645,7 @@ function exportExcel(){
   ws2['!cols']=[{wch:12},{wch:14},{wch:20},{wch:16},{wch:18},{wch:8},{wch:8},{wch:8}];
   XLSX.utils.book_append_sheet(wb,ws2,'Worker Summary');
   // Sheet 3: Advances
-  const aData=[['Worker','Date','Amount (FDJ)','Reason','Added By']];
+  const aData=[['Worker','Date','Amount (ETB)','Reason','Added By']];
   advances.forEach(a=>{aData.push([a.worker,a.date,a.amount,a.reason||'',a.addedBy||'']);});
   const ws3=XLSX.utils.aoa_to_sheet(aData);
   ws3['!cols']=[{wch:12},{wch:12},{wch:14},{wch:25},{wch:14}];
