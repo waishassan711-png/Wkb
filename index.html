@@ -111,7 +111,7 @@ body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);m
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:100;display:none;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:#0d1f3c;border-radius:24px 24px 0 0;border-top:1px solid var(--border);width:100%;max-width:430px;max-height:92vh;display:flex;flex-direction:column;animation:slideUp 0.3s ease;}.modal-body{padding:20px 17px 0;overflow-y:auto;flex:1;}.modal-footer{padding:12px 17px 30px;border-top:1px solid var(--border);background:#0d1f3c;}
+.modal{background:#0d1f3c;border-radius:24px 24px 0 0;border-top:1px solid var(--border);width:100%;max-width:430px;padding:20px 17px 40px;max-height:92vh;overflow-y:auto;animation:slideUp 0.3s ease;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .modal-handle{width:40px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin:0 auto 15px;}
 .modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;margin-bottom:15px;}
@@ -577,7 +577,6 @@ input:checked+.slider:before{transform:translateX(20px);}
 <div class="modal-overlay" id="m-truck">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-body">
     <div class="modal-title" id="m-truck-title">🚛 Add Truck</div>
     <div class="form-group"><label class="form-label">Plate Number</label><input class="form-input" id="f-plate" placeholder="DJ-1234" style="text-transform:uppercase;"></div>
     <div class="form-row">
@@ -593,11 +592,8 @@ input:checked+.slider:before{transform:translateX(20px);}
     </div>
     <div class="form-group"><label class="form-label">Notes (optional)</label><input class="form-input" id="f-notes" placeholder="Any notes..."></div>
     <input type="hidden" id="f-edit-id">
-    </div><!-- end modal-body -->
-    <div class="modal-footer">
-    <button class="btn-pri" onclick="saveTruck()">💾 Save Truck</button>
-    <button class="btn-sec" onclick="closeModal('m-truck')">✕ Cancel</button>
-    </div>
+    <button class="btn-pri" onclick="saveTruck()">Save Truck</button>
+    <button class="btn-sec" onclick="closeModal('m-truck')">Cancel</button>
   </div>
 </div>
 
@@ -1357,8 +1353,8 @@ function saveTruck(){
     const addedBy=duplicate.addedBy||'someone';
     const dateStr=duplicate.date||'';
     const createdAt=duplicate.createdAt?new Date(duplicate.createdAt).toTimeString().slice(0,5):'';
-    const timeStr=createdAt?' at '+createdAt:'';
-    alert('⚠️ Plate '+plate+' already exists!\nTime: '+timeStr.replace(' at ','')+'\nDate: '+dateStr+'\nAdded by: '+addedBy+'\n\nPlease enter a different plate number.');
+    const timeStr=createdAt?createdAt:'';
+    alert('⚠️ Plate '+plate+' already exists!\nTime: '+timeStr+'\nDate: '+dateStr+'\nAdded by: '+addedBy+'\n\nPlease enter a different plate number.');
     return;
   }
   if(editId){
