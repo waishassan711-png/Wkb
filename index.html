@@ -17,7 +17,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <title>KAB Services — Truck Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&amp;family=Barlow+Condensed:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Barlow:wght@300;400;500;600;700;800&amp;family=Barlow+Condensed:wght@600;700;800&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 :root{--navy:#0d1f3c;--blue:#1a3a6b;--mid:#1e4d8c;--accent:#2d7dd2;--bright:#4fa3e8;--teal:#00c9b1;--gold:#f5a623;--red:#e74c3c;--green:#2ecc71;--white:#fff;--muted:#8899aa;--border:rgba(255,255,255,0.1);--card:rgba(255,255,255,0.07);--shadow:0 8px 32px rgba(0,0,0,0.3);}
@@ -28,26 +28,26 @@ body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--white);m
 .screen.active{display:flex;}
 .topbar{background:linear-gradient(135deg,var(--navy),var(--blue));padding:48px 14px 13px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .topbar-logo{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--bright));display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;flex-shrink:0;}
-.topbar-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:0.5px;flex:1;}
+.topbar-title{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;letter-spacing:0.5px;flex:1;}
 .topbar-sub{font-size:10px;color:var(--muted);margin-top:1px;}
 .topbar-btn{background:var(--card);border:1px solid var(--border);color:var(--white);border-radius:10px;padding:7px 11px;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0;}
 .topbar-actions{display:flex;gap:6px;align-items:center;}
 .scroll{flex:1;overflow-y:auto;padding:13px;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none;}
 .nav{background:rgba(13,31,60,0.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;flex-shrink:0;padding-bottom:env(safe-area-inset-bottom);}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0;cursor:pointer;color:var(--muted);font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;gap:3px;}
+.nav-item{{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0;cursor:pointer;color:var(--muted);font-size:10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;gap:3px;}
 .nav-item .icon{font-size:17px;}
 .nav-item.active{color:var(--bright);}
 /* PIN */
 .pin-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:20px;}
 .pin-dots{display:flex;gap:14px;justify-content:center;margin:16px 0 6px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--bright);transition:all 0.2s;}
-.pin-dot.filled{background:var(--bright);}
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(79,163,232,0.5);background:transparent;transition:all 0.25s;box-shadow:none;}
+.pin-dot.filled{background:linear-gradient(135deg,#4fa3e0,#00c9b1);border-color:transparent;box-shadow:0 0 10px rgba(79,163,232,0.6);}
 .pin-error{color:var(--red);font-size:12px;min-height:18px;text-align:center;margin-bottom:6px;}
 .pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:280px;}
-.pin-key{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:17px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;cursor:pointer;user-select:none;transition:all 0.15s;}
+.pin-key{background:rgba(255,255,255,0.07);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:17px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;cursor:pointer;user-select:none;transition:all 0.15s;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
 .pin-key:active{background:var(--accent);transform:scale(0.95);}
-.who-btn{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:9px;width:100%;max-width:340px;transition:all 0.15s;}
+.who-btn{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:9px;width:100%;max-width:340px;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.15s;}
 .who-btn:active{border-color:var(--bright);}
 .who-av{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;}
 /* STATS */
@@ -159,15 +159,22 @@ input:checked+.slider:before{transform:translateX(20px);}
 <body>
 
 <!-- LOGIN -->
-<div class="screen" id="s-login">
-  <div class="topbar">
-    <div class="topbar-logo">KAB</div>
+<div class="screen" id="s-login" style="background:linear-gradient(135deg,#0d0621 0%,#0d1f3c 45%,#042a1e 100%);position:relative;overflow:hidden;">
+  <div class="topbar" style="background:transparent;border-bottom:1px solid rgba(255,255,255,0.07);">
+    <div class="topbar-logo" style="font-family:'Orbitron',sans-serif;font-size:14px;letter-spacing:2px;background:linear-gradient(135deg,#4fa3e0,#00c9b1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KAB</div>
     <div><div class="topbar-title">Wais-Kabe Tracker</div><div class="topbar-sub">KAB Services — Djibouti</div></div>
   </div>
-  <div class="scroll" style="display:flex;flex-direction:column;align-items:center;padding-top:28px;">
-    <div style="font-size:48px;margin-bottom:12px;">🚛</div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;margin-bottom:5px;">Who are you?</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:22px;">Select your name to log in</div>
+  <div class="scroll" style="display:flex;flex-direction:column;align-items:center;padding-top:32px;position:relative;z-index:1;">
+    <!-- Glow blobs -->
+    <div style="position:fixed;width:180px;height:180px;background:rgba(79,163,232,0.18);border-radius:50%;top:-40px;right:-40px;filter:blur(50px);pointer-events:none;z-index:0;"></div>
+    <div style="position:fixed;width:140px;height:140px;background:rgba(0,201,177,0.12);border-radius:50%;bottom:80px;left:-30px;filter:blur(45px);pointer-events:none;z-index:0;"></div>
+    <!-- Logo glass card -->
+    <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:18px 28px;margin-bottom:20px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+      <div style="font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;background:linear-gradient(135deg,#4fa3e0,#00c9b1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px;">KAB</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;margin-top:4px;">Truck Tracker</div>
+    </div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;color:#fff;">Who are you?</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:24px;letter-spacing:1px;">Select your name to continue</div>
     <div id="who-list" style="width:100%;max-width:340px;"><div class="who-btn" onclick="selectUser('admin','admin')">
     <div class="who-av" style="background:rgba(255,215,0,0.15);color:#ffd700;">👑</div>
     <div><div style="font-weight:700;font-size:15px;">Admin</div><div style="font-size:11px;color:var(--muted);">Full access</div></div>
@@ -196,13 +203,39 @@ input:checked+.slider:before{transform:translateX(20px);}
   </div>
 </div>
 
+<!-- ADMIN PHONE CHECK -->
+<div class="screen" id="s-admin-phone">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:32px;gap:20px;">
+    <div style="font-size:52px;margin-bottom:4px;">📱</div>
+    <div style="font-size:22px;font-weight:800;color:var(--text);">Vérification Admin</div>
+    <div style="font-size:13px;color:var(--muted);text-align:center;">Entrez votre numéro de téléphone pour continuer</div>
+    <input id="admin-phone-input" type="tel" placeholder="Ex: 77 84 44 39"
+      style="width:100%;max-width:300px;padding:14px 16px;border-radius:14px;border:1.5px solid var(--border);background:rgba(255,255,255,0.06);color:var(--text);font-size:18px;font-weight:600;text-align:center;outline:none;letter-spacing:2px;"
+      oninput="this.value=this.value.replace(/[^0-9 ]/g,'')"
+      onkeydown="if(event.key==='Enter')checkAdminPhone()">
+    <div id="admin-phone-err" style="color:var(--red);font-size:13px;min-height:18px;"></div>
+    <button onclick="checkAdminPhone()"
+      style="width:100%;max-width:300px;padding:14px;border-radius:14px;background:var(--accent);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;">
+      ✅ Confirmer
+    </button>
+    <button onclick="go('s-login')"
+      style="width:100%;max-width:300px;padding:12px;border-radius:14px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:1.5px solid var(--border);cursor:pointer;">
+      ← Retour
+    </button>
+  </div>
+</div>
+
 <!-- PIN -->
-<div class="screen" id="s-pin">
-  <div class="topbar">
+<div class="screen" id="s-pin" style="background:linear-gradient(135deg,#0d0621 0%,#0d1f3c 45%,#042a1e 100%);position:relative;overflow:hidden;">
+  <div class="topbar" style="background:transparent;border-bottom:1px solid rgba(255,255,255,0.07);">
     <div class="topbar-logo">KAB</div>
     <div><div class="topbar-title" id="pin-title">admin</div><div class="topbar-sub">KAB Services</div></div>
   </div>
-  <div class="pin-wrap">
+  <div class="pin-wrap" style="position:relative;z-index:1;">
+    <!-- glow blobs -->
+    <div style="position:fixed;width:160px;height:160px;background:rgba(79,163,232,0.15);border-radius:50%;top:-30px;right:-30px;filter:blur(50px);pointer-events:none;z-index:0;"></div>
+    <div style="position:fixed;width:120px;height:120px;background:rgba(0,201,177,0.1);border-radius:50%;bottom:100px;left:-20px;filter:blur(40px);pointer-events:none;z-index:0;"></div>
+    <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.13);border-radius:24px;padding:24px 28px;margin-bottom:20px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);min-width:220px;">
     <div style="font-size: 46px; margin-bottom: 11px;" id="pin-emoji">👑</div>
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;" id="pin-name">admin</div>
     <div style="font-size:12px;color:var(--muted);margin-top:4px;">Enter your 4-digit PIN</div>
@@ -211,6 +244,7 @@ input:checked+.slider:before{transform:translateX(20px);}
       <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
     </div>
     <div class="pin-error" id="pin-err"></div>
+    </div><!-- end glass card -->
     <div class="pin-pad">
       <div class="pin-key" onclick="pk('1')">1</div><div class="pin-key" onclick="pk('2')">2</div><div class="pin-key" onclick="pk('3')">3</div>
       <div class="pin-key" onclick="pk('4')">4</div><div class="pin-key" onclick="pk('5')">5</div><div class="pin-key" onclick="pk('6')">6</div>
@@ -479,80 +513,8 @@ input:checked+.slider:before{transform:translateX(20px);}
   <div class="scroll">
     <div class="sec-hdr"><span class="sec-title">Workers</span><span class="sec-action" onclick="openModal('m-add-worker')">+ Add</span></div>
     <div id="manage-workers">
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#2d7dd233;color:#2d7dd2;">AH</div>
-        <div style="flex:1;"><div class="w-name">Ahmed</div><div class="w-sub">Worker · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openEditPin('Ahmed','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
-          <button onclick="removeWorker('Ahmed')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#00c9b133;color:#00c9b1;">RA</div>
-        <div style="flex:1;"><div class="w-name">Radwan</div><div class="w-sub">Worker · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openEditPin('Radwan','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
-          <button onclick="removeWorker('Radwan')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#f5a62333;color:#f5a623;">OL</div>
-        <div style="flex:1;"><div class="w-name">Oli</div><div class="w-sub">Worker · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openEditPin('Oli','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
-          <button onclick="removeWorker('Oli')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#e74c3c33;color:#e74c3c;">AL</div>
-        <div style="flex:1;"><div class="w-name">Ali</div><div class="w-sub">Worker · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openEditPin('Ali','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
-          <button onclick="removeWorker('Ali')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#9b59b633;color:#9b59b6;">OM</div>
-        <div style="flex:1;"><div class="w-name">Omar</div><div class="w-sub">Worker · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openEditPin('Omar','worker')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐 PIN</button>
-          <button onclick="removeWorker('Omar')" style="background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🗑️</button>
-        </div>
-      </div>
-    </div></div>
-    <div style="height:12px;"></div>
     <div class="sec-hdr"><span class="sec-title">Cashiers &amp; Permissions</span></div>
     <div id="manage-cashiers">
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#00c9b133;color:#00c9b1;">💼</div>
-        <div style="flex:1;"><div class="w-name">Cashier 1</div><div class="w-sub">Cashier · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openCashierPerms('Cashier 1')" style="background:rgba(0,201,177,0.15);border:1px solid rgba(0,201,177,0.3);color:#00c9b1;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">⚙️ Perms</button>
-          <button onclick="openEditPin('Cashier 1','cashier')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-card" style="cursor:default;">
-      <div class="w-card-top">
-        <div class="w-av" style="background:#1abc9c33;color:#1abc9c;">💼</div>
-        <div style="flex:1;"><div class="w-name">Cashier 2</div><div class="w-sub">Cashier · PIN: ••••</div></div>
-        <div style="display:flex;gap:6px;">
-          <button onclick="openCashierPerms('Cashier 2')" style="background:rgba(0,201,177,0.15);border:1px solid rgba(0,201,177,0.3);color:#00c9b1;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">⚙️ Perms</button>
-          <button onclick="openEditPin('Cashier 2','cashier')" style="background:rgba(79,163,232,0.15);border:1px solid rgba(79,163,232,0.3);color:var(--bright);border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;cursor:pointer;">🔐</button>
-        </div>
-      </div>
-    </div></div>
-    <div style="height:12px;"></div>
     <div class="sec-hdr"><span class="sec-title">Admin PIN</span></div>
     <div class="w-card" style="cursor:pointer;" onclick="openModal('m-admin-pin')">
       <div class="w-card-top">
@@ -560,6 +522,18 @@ input:checked+.slider:before{transform:translateX(20px);}
         <div style="flex:1;"><div class="w-name">Change Admin PIN</div><div class="w-sub">Current PIN is hidden</div></div>
         <span style="color:var(--muted);font-size:20px;">›</span>
       </div>
+    </div>
+    <div style="height:12px;"></div>
+    <div class="sec-hdr"><span class="sec-title">📱 Admin Phone Number</span></div>
+    <div style="padding:4px 12px 12px;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">Required before PIN on login. Leave empty to disable.</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="admin-phone-display" type="tel" placeholder="Ex: 77 84 44 39"
+          style="flex:1;padding:11px 14px;border-radius:12px;border:1.5px solid var(--border);background:rgba(255,255,255,0.06);color:var(--text);font-size:14px;font-weight:600;outline:none;" />
+        <button onclick="saveAdminPhone()"
+          style="padding:11px 16px;border-radius:12px;background:var(--accent);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;">💾 Save</button>
+      </div>
+      <div id="admin-phone-saved" style="font-size:11px;color:var(--green);margin-top:6px;min-height:16px;"></div>
     </div>
     <div style="height:12px;"></div>
     <div class="sec-hdr"><span class="sec-title">Export &amp; Install</span></div>
@@ -746,6 +720,28 @@ const PARTIAL_RATE = 2800;       // Company gets on partial
 const WORKER_PARTIAL_RATE = 700; // Worker earns on partial
 const COMPANY_RATE = TOTAL_RATE - WORKER_RATE; // Company keeps = 4200
 
+// ── CALCULATION HELPERS (partial = 0.5 truck) ──
+function calcCount(truckList){
+  const p=truckList.filter(t=>t.status==='paid').length;
+  const x=truckList.filter(t=>t.status==='partial').length;
+  return p + (x*0.5);
+}
+function calcWorkerEarn(truckList){
+  const p=truckList.filter(t=>t.status==='paid').length;
+  const x=truckList.filter(t=>t.status==='partial').length;
+  return (p*WORKER_RATE) + (x*WORKER_PARTIAL_RATE);
+}
+function calcCompanyEarn(truckList){
+  const p=truckList.filter(t=>t.status==='paid').length;
+  const x=truckList.filter(t=>t.status==='partial').length;
+  return (p*COMPANY_RATE) + (x*PARTIAL_RATE);
+}
+function calcTotalFare(truckList){
+  const p=truckList.filter(t=>t.status==='paid').length;
+  const x=truckList.filter(t=>t.status==='partial').length;
+  return (p*TOTAL_RATE) + (x*(PARTIAL_RATE+WORKER_PARTIAL_RATE));
+}
+
 const COLORS=['#2d7dd2','#00c9b1','#f5a623','#e74c3c','#9b59b6','#1abc9c','#e67e22'];
 
 // ── OFFLINE QUEUE ──
@@ -834,6 +830,7 @@ const DEFAULT_CASHIERS = [
 ];
 
 let adminPin = '1234';
+let adminPhone = ''; // Admin phone number for 2-step login
 let workers = [];
 let cashiers = [];
 let trucks = [];
@@ -844,6 +841,7 @@ function setupListeners() {
   onValue(ref(db, 'kab/apin'), snap => {
     adminPin = snap.val() || '1234';
   });
+  onValue(ref(db,'kab/aphone'), snap=>{ adminPhone=snap.val()||''; });
   onValue(ref(db, 'kab/workers'), snap => {
     workers = snap.val() || [];
     if (!Array.isArray(workers)) workers = Object.values(workers);
@@ -890,6 +888,8 @@ async function init() {
   } else {
     // load current values immediately before listeners fire
     adminPin = (await get(ref(db,'kab/apin'))).val() || '1234';
+    const ap = (await get(ref(db,'kab/aphone'))).val();
+    adminPhone = ap || '';
     const ws = (await get(ref(db,'kab/workers'))).val();
     workers = ws ? (Array.isArray(ws)?ws:Object.values(ws)) : [];
     const cs = (await get(ref(db,'kab/cashiers'))).val();
@@ -945,7 +945,13 @@ function selectUser(name,role){
   } else {
     document.getElementById('pin-emoji').style.cssText='font-size:46px;margin-bottom:11px;';
   }
-  go('s-pin');
+  if(role==='admin' && adminPhone){
+    go('s-admin-phone');
+    document.getElementById('admin-phone-err').textContent='';
+    document.getElementById('admin-phone-input').value='';
+  } else {
+    go('s-pin');
+  }
 }
 
 function goBack(){pinEntry='';updDots();document.getElementById('pin-err').textContent='';go('s-login');}
@@ -990,13 +996,13 @@ function renderWTrucks(){
   const paid=mine.filter(t=>t.status==='paid').length;
   const unpaid=mine.filter(t=>t.status==='unpaid').length;
   const partial=mine.filter(t=>t.status==='partial').length;
-  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
+  const earn = calcWorkerEarn(mine);
+  const effectiveCount = calcCount(mine);
   document.getElementById('w-trucks-title').textContent=curUser+' — My Trucks';
   const workerCounts = workers.map(wk=>{
-    const cnt = trucks.filter(t=>t.worker===wk.name).length;
-    const wPaid = trucks.filter(t=>t.worker===wk.name&&t.status==='paid').length;
-    const wPartial = trucks.filter(t=>t.worker===wk.name&&t.status==='partial').length;
-    const wEarn = (wPaid*WORKER_RATE) + (wPartial*WORKER_PARTIAL_RATE);
+    const wTrucks = trucks.filter(t=>t.worker===wk.name);
+    const cnt = calcCount(wTrucks);
+    const wEarn = calcWorkerEarn(wTrucks);
     const wEarnStr = wEarn>=1000 ? (wEarn/1000).toFixed(1)+'k' : wEarn;
     return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:${wk.name===curUser?wk.color+'22':'rgba(255,255,255,0.04)'};border:1px solid ${wk.name===curUser?wk.color+'55':'rgba(255,255,255,0.07)'};">
       <div style="display:flex;align-items:center;gap:8px;">
@@ -1011,7 +1017,7 @@ function renderWTrucks(){
   }).join('');
   document.getElementById('w-trucks-title').textContent=curUser+' — My Trucks';
   document.getElementById('w-stats').innerHTML=`
-    <div class="stat-box"><div class="stat-num" style="color:${color}">${mine.length}</div><div class="stat-lbl">My Trucks</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:${color}">${effectiveCount}</div><div class="stat-lbl">My Trucks</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--green)">${paid}</div><div class="stat-lbl">Paid</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--gold)">${partial}</div><div class="stat-lbl">Partial</div></div>
     <div class="stat-box"><div class="stat-num" style="color:var(--red)">${unpaid}</div><div class="stat-lbl">Unpaid</div></div>
@@ -1022,7 +1028,7 @@ function renderWTrucks(){
       <div style="margin-top:8px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
           <span style="font-size:12px;font-weight:700;color:var(--muted);">TOTAL TRUCKS</span>
-          <span style="font-size:20px;font-weight:800;color:var(--text);">${trucks.length}</span>
+          <span style="font-size:20px;font-weight:800;color:var(--text);">${calcCount(trucks)}</span>
         </div>
         <div style="display:flex;gap:8px;font-size:11px;font-weight:600;">
           <span style="color:var(--green);">✅ ${trucks.filter(t=>t.status==='paid').length} Paid</span>
@@ -1053,15 +1059,17 @@ function renderWEarnings(){
   const mine=trucks.filter(t=>t.worker===curUser);
   const myAdv=advances.filter(a=>a.worker===curUser);
   const partial=mine.filter(t=>t.status==='partial').length;
-  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
+  const earn = calcWorkerEarn(mine);
+  const effectiveCount = calcCount(mine);
   const advTotal=myAdv.reduce((s,a)=>s+a.amount,0);
   const net=earn-advTotal;
   document.getElementById('w-earn-title').textContent=curUser+' — Earnings';
   let h=`<div class="report-card" style="border-left:4px solid ${color};">
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;margin-bottom:12px;color:${color};">💰 My Summary</div>
-    <div class="report-row"><span class="r-key">Total Trucks</span><span class="r-val">${mine.length}</span></div>
-    <div class="report-row"><span class="r-key">Rate per truck</span><span class="r-val">${WORKER_RATE.toLocaleString()} ETB</span></div>
-    <div class="report-row"><span class="r-key">Total fare per truck</span><span class="r-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</span></div>
+    <div class="report-row"><span class="r-key">Total Trucks</span><span class="r-val">${effectiveCount%1===0?effectiveCount:effectiveCount.toFixed(1)}</span></div>
+    <div class="report-row"><span class="r-key">✅ Paid</span><span class="r-val">${mine.filter(t=>t.status==='paid').length} × 1,300 ETB</span></div>
+    <div class="report-row"><span class="r-key">⚡ Partial</span><span class="r-val">${mine.filter(t=>t.status==='partial').length} × 700 ETB (0.5 each)</span></div>
+    <div class="report-row"><span class="r-key">❌ Unpaid</span><span class="r-val">${mine.filter(t=>t.status==='unpaid').length} × 0 ETB</span></div>
     <div class="report-row"><span class="r-key">Gross Earnings</span><span class="r-val" style="color:var(--teal)">${earn.toLocaleString()} ETB</span></div>
     <div class="report-row"><span class="r-key">Advances Taken</span><span class="r-val" style="color:var(--gold)">${advTotal.toLocaleString()} ETB</span></div>
     <div class="report-row"><span class="r-key">Net Balance</span><span class="r-val" style="color:${net>=0?'var(--green)':'var(--red)'};font-size:20px;">${net.toLocaleString()} ETB</span></div>
@@ -1075,7 +1083,7 @@ function renderWEarnings(){
     h+=mine.map(tk=>`<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:9px;">
       <div style="width:8px;height:8px;border-radius:50%;background:${tk.status==='paid'?'var(--green)':tk.status==='partial'?'var(--gold)':'var(--red)'};flex-shrink:0;"></div>
       <div style="flex:1;"><div style="font-weight:600;font-size:14px;">${tk.plate}</div><div style="font-size:10px;color:var(--muted);">${fmtDateTime(tk.createdAt)} · ${tk.status}</div><div style="font-size:10px;color:rgba(255,255,255,0.3);">Added by: ${tk.addedBy||curUser}</div></div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--teal)">${WORKER_RATE.toLocaleString()}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--teal)">${tk.status==='paid'?WORKER_RATE.toLocaleString():tk.status==='partial'?WORKER_PARTIAL_RATE.toLocaleString():'0'} ETB</div>
     </div>`).join('');
   }
   document.getElementById('w-earn-content').innerHTML=h;
@@ -1211,13 +1219,14 @@ function renderWorkersList(){
     const paid=mine.filter(t=>t.status==='paid').length;
     const partial=mine.filter(t=>t.status==='partial').length;
     const unpaid=mine.filter(t=>t.status==='unpaid').length;
-    const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
+    const earn = calcWorkerEarn(mine);
+    const effectiveCnt = calcCount(mine);
     const advTotal=advances.filter(a=>a.worker===w.name).reduce((s,a)=>s+a.amount,0);
     const net=earn-advTotal;
     return `<div class="w-card">
       <div class="w-card-top" onclick="toggleDetail('wd-${w.name}')">
         <div class="w-av" style="background:${w.color}33;color:${w.color};">${w.name.slice(0,2).toUpperCase()}</div>
-        <div><div class="w-name">${w.name}</div><div class="w-sub">${mine.length} trucks · ✅${paid} ❌${unpaid}</div></div>
+        <div><div class="w-name">${w.name}</div><div class="w-sub">${effectiveCnt} trucks · ✅${paid} ⚡${partial} ❌${unpaid}</div></div>
         <div class="w-earn"><div class="w-amount">${earn.toLocaleString()}</div><div style="font-size:9px;color:var(--muted);">Earned ETB</div><div class="w-net" style="color:${net>=0?'var(--green)':'var(--red)'}">Net: ${net.toLocaleString()}</div></div>
       </div>
       <div class="w-detail" id="wd-${w.name}">
@@ -1261,9 +1270,10 @@ function renderReports(prefix){
   var outstanding=(unpaid+partial)*TOTAL_RATE;
   var collectionRate=trucks.length>0?Math.round(paid/trucks.length*100):0;
   var workload=workers.map(function(w){
-    var cnt=trucks.filter(function(t){return t.worker===w.name;}).length;
-    var earn=cnt*WORKER_RATE;
-    var fare=cnt*TOTAL_RATE;
+    var wt=trucks.filter(function(t){return t.worker===w.name;});
+    var cnt=calcCount(wt);
+    var earn=calcWorkerEarn(wt);
+    var fare=calcTotalFare(wt);
     var adv=advances.filter(function(a){return a.worker===w.name;}).reduce(function(s,a){return s+a.amount;},0);
     var wpaid=trucks.filter(function(t){return t.worker===w.name&&t.status==='paid';}).length;
     var wunpaid=trucks.filter(function(t){return t.worker===w.name&&t.status==='unpaid';}).length;
@@ -1348,6 +1358,9 @@ function toggleDetail(id){const el=document.getElementById(id);if(el)el.classLis
 
 // ── MANAGE ──
 function renderManage(){
+  // Populate admin phone input
+  const apInput = document.getElementById('admin-phone-display');
+  if(apInput) apInput.value = adminPhone || '';
   document.getElementById('manage-workers').innerHTML=workers.map(w=>`
     <div class="w-card" style="cursor:default;">
       <div class="w-card-top">
@@ -1488,6 +1501,26 @@ function delTruck(id){
 }
 
 
+
+
+// ── ADMIN PHONE CHECK ──────────────────────────
+function checkAdminPhone(){
+  const input = document.getElementById('admin-phone-input').value.replace(/ /g,'');
+  const stored = adminPhone.replace(/ /g,'');
+  if(!stored){
+    // No phone set yet — skip directly to PIN
+    go('s-pin');
+    return;
+  }
+  if(input === stored){
+    go('s-pin');
+    document.getElementById('admin-phone-err').textContent='';
+  } else {
+    document.getElementById('admin-phone-err').textContent='❌ Numéro incorrect. Réessayez.';
+    document.getElementById('admin-phone-input').value='';
+    document.getElementById('admin-phone-input').focus();
+  }
+}
 
 // ── WORKER PERMISSIONS ────────────────────────
 const WORKER_PERMS_DEF = [
@@ -1649,6 +1682,14 @@ function savePin(){
   renderManage();
   toast('🔐 PIN updated for '+name);
 }
+function saveAdminPhone(){
+  const phone = document.getElementById('admin-phone-display').value.trim();
+  adminPhone = phone;
+  sv('kab_aphone', phone);
+  document.getElementById('admin-phone-saved').textContent = phone ? '✅ Numéro enregistré : '+phone : '✅ Vérification téléphone désactivée';
+  setTimeout(()=>{ const el=document.getElementById('admin-phone-saved'); if(el) el.textContent=''; }, 3000);
+}
+
 function saveAdminPin(){
   const pin=document.getElementById('ap-val').value.trim();
   if(pin.length!==4||isNaN(pin)){toast('⚠️ Enter 4-digit PIN');return;}
@@ -1673,16 +1714,17 @@ function exportExcel(){
   const sData=[['Worker','Total Trucks','Total Fare (ETB)','Worker Earnings (ETB)','Company Revenue (ETB)','Advances (ETB)','Net Balance (ETB)','Paid','Partial','Unpaid']];
   workers.forEach(w=>{
     const mine=trucks.filter(t=>t.worker===w.name);
-    const fare=mine.length*TOTAL_RATE;
+    const fare=calcTotalFare(mine);
     const partial=mine.filter(t=>t.status==='partial').length;
-  const earn = (paid*WORKER_RATE) + (partial*WORKER_PARTIAL_RATE);
-    const company=mine.length*COMPANY_RATE;
+    const earn=calcWorkerEarn(mine);
+    const effectiveCount=calcCount(mine);
+    const company=calcCompanyEarn(mine);
     const adv=advances.filter(a=>a.worker===w.name).reduce((s,a)=>s+a.amount,0);
     sData.push([w.name,mine.length,fare,earn,company,adv,earn-adv,mine.filter(t=>t.status==='paid').length,mine.filter(t=>t.status==='partial').length,mine.filter(t=>t.status==='unpaid').length]);
   });
-  const totalFareX=trucks.length*TOTAL_RATE;
-  const totalEarnX=trucks.length*WORKER_RATE;
-  const totalCompX=trucks.length*COMPANY_RATE;
+  const totalFareX=calcTotalFare(trucks);
+  const totalEarnX=calcWorkerEarn(trucks);
+  const totalCompX=calcCompanyEarn(trucks);
   const totalAdv=advances.reduce((s,a)=>s+a.amount,0);
   sData.push(['TOTAL',trucks.length,totalFareX,totalEarnX,totalCompX,totalAdv,totalEarnX-totalAdv,trucks.filter(t=>t.status==='paid').length,trucks.filter(t=>t.status==='partial').length,trucks.filter(t=>t.status==='unpaid').length]);
   const ws2=XLSX.utils.aoa_to_sheet(sData);

@@ -12,7 +12,9 @@ Live at: https://waishassan711-png.github.io/Wkb/
 - Ali: 5555
 - Omar: 6666
 
-## Tariffs
-- Total fare per car: 5,500 FDJ
-- Worker earns: 1,300 FDJ
-- Company keeps: 4,200 FDJ
+## Tariffs (ETB)
+| Status | Total Fare | Worker Earns | Company Keeps | Count |
+|---|---|---|---|---|
+| ✅ Paid | 5,500 ETB | 1,300 ETB | 4,200 ETB | 1 truck |
+| ⚡ Partial | 3,500 ETB | 700 ETB | 2,800 ETB | 0.5 truck |
+| ❌ Unpaid | 0 ETB | 0 ETB | 0 ETB | 1 truck |
