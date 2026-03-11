@@ -1094,9 +1094,9 @@ function renderCTrucks(){
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:${color}">👷 ${tk.worker}</div></div>
-        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</div></div>
-        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} ETB</div></div>
-        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${tk.status==='partial'?(PARTIAL_RATE+WORKER_PARTIAL_RATE).toLocaleString():tk.status==='unpaid'?'0':TOTAL_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${tk.status==='partial'?WORKER_PARTIAL_RATE.toLocaleString():tk.status==='unpaid'?'0':WORKER_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${tk.status==='partial'?PARTIAL_RATE.toLocaleString():tk.status==='unpaid'?'0':COMPANY_RATE.toLocaleString()} ETB</div></div>
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       ${showEdit||showDel?`<div class="truck-acts">
@@ -1151,9 +1151,9 @@ function renderATrucks(){
       </div>
       <div class="truck-meta">
         <div><div class="tm-lbl">Worker</div><div class="tm-val" style="color:${color}">👷 ${tk.worker}</div></div>
-        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${TOTAL_RATE.toLocaleString()} ETB</div></div>
-        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${WORKER_RATE.toLocaleString()} ETB</div></div>
-        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${COMPANY_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Total Fare</div><div class="tm-val" style="color:var(--gold)">${tk.status==='partial'?(PARTIAL_RATE+WORKER_PARTIAL_RATE).toLocaleString():tk.status==='unpaid'?'0':TOTAL_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Worker Gets</div><div class="tm-val" style="color:var(--teal)">${tk.status==='partial'?WORKER_PARTIAL_RATE.toLocaleString():tk.status==='unpaid'?'0':WORKER_RATE.toLocaleString()} ETB</div></div>
+        <div><div class="tm-lbl">Company</div><div class="tm-val" style="color:var(--bright)">${tk.status==='partial'?PARTIAL_RATE.toLocaleString():tk.status==='unpaid'?'0':COMPANY_RATE.toLocaleString()} ETB</div></div>
         ${tk.notes?`<div><div class="tm-lbl">Note</div><div class="tm-val" style="font-size:12px;color:var(--muted)">${tk.notes}</div></div>`:''}
       </div>
       <div class="truck-acts">
